@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/font.css"/>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function uName(){
+            if(document.cookie.match(/uName=(.+)(;|$)/) && document.cookie.match(/uPwd=(.+)(;|$)/) ){
+                location.href="/";
+            }
+        }
+        uName();
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="login_box">
+            <img src="img/logo.svg" alt="" class="logo">
+            <div class="login_txt">
+                <strong>Hello! let's get started</strong>
+                <p>Sign in to continue.</p>
+            </div>
+            <div class="login_con">
+                <input type="text" placeholder="用户名" class="log_name">
+                <input type="password" placeholder="密码" class="log_pwd">
+                <button class="log_btn">登录</button>
+            </div>
+            <div class="keep_login">
+                <span class="checkBox"></span><span>保持登录状态</span>
+                <a href="#">忘记密码</a>
+            </div>
+            <div class="register">
+                没有账号？<a href="register.html">注册</a>一个
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login_register.js"></script>
+    <script>
+        $(".log_btn").click(function(){
+            var userName=$(".log_name").val();
+            var passWord=$(".log_pwd").val();
+            if(userName && passWord){
+                $.ajax({
+                    url:"/login",
+                    type:"post",
+                    data:{
+                        UserName: userName,
+                        PassWord: passWord
+                    },
+                    success:function(da){
+                        if(da==="true"){
+                            if($(".checkBox").hasClass("active")){
+                                $.ajax({
+                                    url:"/keep_login",
+                                    type:"post",
+                                    data:{
+                                        UserName: userName,
+                                        PassWord: passWord
+                                    },
+                                    success:function(da){
+                                        uName();
+                                    }
+                                });
+                            }
+                            location.href = "/";
+                        }else{
+                            alert(da);
+                        }
+                    },
+                    error:function (jqXHR, textStatus, errorThrown){
+                        console.info("网络出错");
+                    }
+                });
+            }else{
+                alert("用户名或密码错误，请核对后输入");
+            }
+        });
+    </script>
+</body>

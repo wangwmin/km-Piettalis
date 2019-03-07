@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 15px 8px;
+            font-size: 14px;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .header{
+            padding: 4px 6px;
+            font-size: 16px;
+            line-height: 20px;
+            position: relative;
+        }
+        .layui-icon{
+            font-size: 18px;
+        }
+        .header span{
+            color: #333;
+            margin-left: 5px;
+        }
+        .main{
+
+        }
+        .clear{
+            padding: 0!important;
+            margin: 0 !important;
+            clear: both;
+        }
+        ul>li{
+            width: 100%;
+            padding: 20px 5px;
+        }
+        li textarea{
+            width: 253px;
+            font-size: 14px;
+            padding: 10px;
+        }
+        .list_text{
+            margin-right: 10px;
+        }
+        .left_m{
+            width: 25%;
+            text-align: right;
+            float: left;
+            line-height: 20px;
+            font-size: 16px;
+            padding-top: 2px;
+        }
+        .right_m{
+            width: 75%;
+            float: left;
+            text-align: left;
+            padding-left: 30px;
+        }
+        .page_confirm div{
+            float: left;
+        }
+        .page{
+            padding-left: 10px;
+            text-align: left;
+            display: inline-block;
+            width: 253px;
+            height: 30px;
+            line-height: 30px;
+            /*font-size: 16px;*/
+            border: 1px solid #999;
+            overflow: hidden;
+            cursor: text;
+        }
+        .logo{
+            position: absolute;
+            top: 100%;
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+        .logo_img{
+            width: 150px;
+            margin-top: 5px;
+        }
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <i class="layui-icon">&#xe716;</i><span>添加文章</span>
+    </div>
+    <div class="main">
+        <ul class="ul_m">
+            <li>
+                <div class="left_m">
+                    <span class="list_text">文章分类</span>
+                </div>
+                <div class="right_m">
+                    <select class="page article_style">
+                        <option value="0">请选择分类</option>
+                    </select>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">文章类型</span>
+                </div>
+                <div class="right_m">
+                    <select class="page article_type">
+                        <option value="0">请选择类型</option>
+                        <option value="1">普通文章</option>
+                        <option value="2">热点文章</option>
+                    </select>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">标题 *</span>
+                </div>
+                <div class="right_m">
+                    <input class="page article_title" type="text">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">关键词</span>
+                </div>
+                <div class="right_m">
+                    <input class="page article_key" type="text">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">描述</span>
+                </div>
+                <div class="right_m">
+                    <textarea name="" id="article_describe" cols="30" rows="4">
+
+                    </textarea>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">主要图片</span>
+                </div>
+                <div class="right_m">
+                    <input class="page article_banner" multiple type="file">
+                </div>
+                <p class="clear"></p>
+            </li>
+			<!-- <li>
+			    <div class="left_m">
+			        <span class="list_text">图片</span>
+			    </div>
+			    <div class="right_m">
+			        <input class="page article_img" multiple type="file">
+			    </div>
+			    <p class="clear"></p>
+			</li> -->
+            <li>
+                <div class="left_m">
+                    <span class="list_text">内容</span>
+                </div>
+                <div class="right_m">
+                    <!-- 加载编辑器的容器 -->
+                    <script id="container" name="content" type="text/plain">
+                        这里写你的初始化内容
+                    </script>
+                    <!-- 配置文件 -->
+                    <script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
+                    <!-- 编辑器源码文件 -->
+                    <script type="text/javascript" src="../ueditor/ueditor.all.js"></script>
+                    <!-- 实例化编辑器 -->
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('container',{initialFrameHeight:300,initialFrameWidth:650});
+                    </script>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <button class="btn_save">保存</button>
+                </div>
+                <p class="clear"></p>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../alert/alert.js"></script>
+    <link rel="stylesheet" href="../alert/alert.css">
+    <script>
+        var selects=$(".article_style").html();
+        /* 获取信息，添加到“分类”这个下拉菜单中 */
+        function get_nav(){
+            $.ajax({
+                url:"/get_nav",
+                type:"get",
+                success:function(da){
+                    $(".article_style").html(selects+da);
+                }
+            });
+        }
+        get_nav();
+
+        // 点击保存文章
+        $(".btn_save").click( function(){
+            // 1.排空处理
+			console.log($(".article_banner").val());
+            // 2.处理Ueditor插件的编译器内容
+            var html,txt;
+            ue.ready(function() {
+                //设置编辑器的内容
+                //获取html内容，返回: 获取标签形式的编译器的内容数据，<p>hello</p>
+                html = ue.getContent();
+                //获取纯文本内容，返回: hello
+                txt = ue.getContentTxt();
+            });
+            // 2.ajax请求
+            var datas=new FormData();
+            var M={};
+            datas.append("article_style",$(".article_style").val());
+            datas.append("article_type",$(".article_type").val());
+            datas.append("article_title",$(".article_title").val());
+            datas.append("article_key",$(".article_key").val());
+            datas.append("article_describe",$("#article_describe").val());
+            datas.append("article_content",html);
+            //文件上传一定要放在最后写，不然之后的数据可能无法传到node中
+            datas.append("article_banner",$(".article_banner").prop("files")[0]);
+            $.ajax({
+                url: "/add_article",
+                type: "post",//可能保存数据的量很大，选择能传送更多数据
+                data: datas,
+                contentType: false,
+                processData:false,
+                success: function(da){
+                    if(M.dialog1){
+                        return M.dialog1.show();
+                    }
+                    M.dialog1 = jqueryAlert({
+                        'content' : da
+                    })
+                }
+            });
+        });
+    </script>
+</body>

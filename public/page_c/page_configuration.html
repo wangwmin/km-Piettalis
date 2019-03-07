@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 15px 8px;
+            font-size: 14px;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .header{
+            padding: 4px 6px;
+            font-size: 16px;
+            line-height: 20px;
+            position: relative;
+        }
+        .layui-icon{
+            font-size: 18px;
+        }
+        .header span{
+            color: #333;
+            margin-left: 5px;
+        }
+        .main{
+
+        }
+        .clear{
+            padding: 0!important;
+            margin: 0 !important;
+            clear: both;
+        }
+        ul>li{
+            width: 100%;
+            padding: 20px 5px;
+        }
+        li textarea{
+            width: 253px;
+            font-size: 14px;
+            padding: 10px;
+        }
+        .list_text{
+            margin-right: 10px;
+        }
+        .left_m{
+            width: 40%;
+            text-align: right;
+            float: left;
+        }
+        .right_m{
+            width: 60%;
+            float: left;
+            text-align: center;
+        }
+        .page_confirm div{
+            float: left;
+        }
+        .page{
+            padding-left: 10px;
+            text-align: left;
+            display: inline-block;
+            width: 253px;
+            height: 30px;
+            line-height: 30px;
+            /*font-size: 16px;*/
+            border: 1px solid #999;
+            overflow: hidden;
+            cursor: text;
+        }
+        .logo{
+            position: absolute;
+            top: 100%;
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+        .logo_img{
+            width: 150px;
+            margin-top: 5px;
+        }
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <i class="layui-icon">&#xe716;</i><span>网站配置</span>
+        <div class="logo">
+            网站logo展示：<br/>
+            <img src="" class="logo_img">
+        </div>
+    </div>
+    <div class="main">
+        <ul class="ul_m">
+            <li>
+                <div class="left_m">
+                    <span class="list_text">网站标题</span>
+                </div>
+                <div class="right_m">
+                    <input class="page page_title" type="text">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">网站关键词</span>
+                </div>
+                <div class="right_m">
+                    <textarea name="" id="page_key" cols="30" rows="4">
+
+                    </textarea>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">网站描述</span>
+                </div>
+                <div class="right_m">
+                    <textarea name="" id="page_describe" cols="30" rows="4">
+
+                    </textarea>
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">公司名称</span>
+                </div>
+                <div class="right_m">
+                    <input class="page page_company" type="text">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">网站LOGO</span>
+                </div>
+                <div class="right_m">
+                    <input class="page page_logo" type="file">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <span class="list_text">网站备案号</span>
+                </div>
+                <div class="right_m">
+                    <input class="page page_icp" type="text">
+                </div>
+                <p class="clear"></p>
+            </li>
+            <li>
+                <div class="left_m">
+                    <button class="btn_save">保存</button>
+                </div>
+                <div class="right_m">
+                    <button>返回上一页</button>
+                </div>
+                <p class="clear"></p>
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        /* 当标签加载完毕，把 从数据库中获取到的数据 插入到对应的标签中
+            * 调用get_web路由把数据库中的数据获取并输出到前端
+        */
+        $.ajax({
+            url:"/get_web",
+            type:"get",
+            success:function(da){
+                $(".page_title").val(da[0].title);// 网站标题
+                $("#page_key").html(da[0].keyWord);// 网站关键字
+                $("#page_describe").html(da[0].description);// 网站描述
+                $(".page_company").val(da[0].company);// 公司名称
+                $(".page_icp").val(da[0].ICP);// ICP备案号
+                $(".logo_img").prop("src",da[0].logo+"?"+Math.random());// 网站logo
+            }
+        });
+        /* 当用户点击了保存按钮后，把用户输入的信息保存到数据库中
+            * 由于设置了logo图片的上传，因此需要用到 文件上传模块
+        */
+        $(".btn_save").click(function(){
+            var datas=new FormData();// 文件上传时使用的对象
+            datas.append("title",$(".page_title").val());
+            datas.append("keyWord",$("#page_key").html());
+            datas.append("company",$(".page_company").val());
+            datas.append("description",$("#page_describe").html());
+            datas.append("logo_reName","web_logo"); //在前端自己设置上传的logo图片文件的名字
+            datas.append("ICP",$(".page_icp").val());
+            // 由于文件上传的特殊性，这段代码之后插入的数据都无法接受到，因此把文件上传放在最后插入
+            datas.append("logo",$(".page_logo").prop("files")[0]);
+            /* ajax调用update_web路由
+                * 由于需要上传数据，因此使用较安全的post的方式提交数据
+            */
+            $.ajax({
+                url:"/update_web",
+                type:"post",
+                data:datas,
+                async:true,
+                contentType:false,
+                processData:false,
+                success:function(da){
+                    alert(da);
+                }
+            });
+        });
+    </script>
+</body>

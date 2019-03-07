@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        if(document.cookie.match(/uName=(.+)(;|$)/)===null){
+                location.href="/login.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="nav_head">
+        <div class="nav_left">
+            <div>
+                <span>layuiAdmin Pro</span>
+            </div>
+        </div>
+        <div class="nav_right">
+            <div class="nR_leftList">
+                <div class="left_icon shrink_menu"><a href="#"><i class="layui-icon">&#xe668;</i></a></div>
+                <div class="left_icon"><a href="#"><i class="layui-icon">&#xe7ae;</i></a></div>
+                <div class="left_icon"><a href="#" class="reload_iF"><i class="layui-icon">&#xe9aa;</i></a></div>
+                <div class="left_search">
+                    <input type="text" placeholder="搜索..." autocomplete="off">
+                </div>
+            </div>
+            <div class="nR_rightList">
+                <div class="uR_nav uNotice">
+                    <a href="#">
+                        <i class="layui-icon">&#xe667;</i>
+                    </a>
+                </div>
+                <div class="uR_nav uTheme">
+                    <a href="#">
+                        <i class="layui-icon">&#xe66a;</i>
+                    </a>
+                </div>
+                <div class="uR_nav uNote">
+                    <a href="#">
+                        <i class="layui-icon">&#xe66e;</i>
+                    </a>
+                </div>
+                <div class="uR_nav uScreen_full">
+                    <a href="#">
+                        <i class="layui-icon layui-icon-screen-full"></i>
+                    </a>
+                </div>
+                <div class="userName">
+                    <span class="uName">贤心</span>
+                    <div class="uN_more">
+                        <i class="layui-icon">&#xe625;</i>
+                        <i class="layui-icon" id="trans">&#xe625;</i>
+                    </div>
+                    <div class="uN_list">
+                        <div class="uNList_c">
+                            <a href="#">基本资料</a>
+                            <a href="#">修改密码</a>
+                        </div>
+                        <hr>
+                        <div class="uNList_c">
+                            <a href="/out_login">退出</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hideNav">
+                    <a href="#">
+                        <i class="layui-icon">&#xe671;</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main_left">
+            <ul class="main_list">
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe68e;</i>
+                    <a href="#">
+                        主页
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div class="child_active">
+                            <a href="#/" url="page_c/Control.html">控制台</a>
+                        </div>
+                        <div>
+                            <a href="#/index_page1" url="page_c/index_page1.html">主页一</a>
+                        </div>
+                        <div>
+                            <a href="#">主页二</a>
+                        </div>
+                    </div>
+                </li>
+<!--                <li>
+                    <i class="layui-icon fixed_icon">&#xe857;</i>
+                    <a href="#">
+                        组件
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div class="cList_list">
+                            <a href="#">栅格</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">等比例列表排列</a>
+                                </div>
+                                <div>
+                                    <a href="#">按移动端排列</a>
+                                </div>
+                                <div>
+                                    <a href="#">移动桌面端组合</a>
+                                </div>
+                                <div>
+                                    <a href="#">全端复杂组合</a>
+                                </div>
+                                <div>
+                                    <a href="#">低于桌面堆叠排列</a>
+                                </div>
+                                <div>
+                                    <a href="#">九宫格</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">按钮</a>
+                        </div>
+                        <div class="cList_list">
+                            <a href="#">表单</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">表单元素</a>
+                                </div>
+                                <div>
+                                    <a href="#">表单组合</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">导航</a>
+                        </div>
+                        <div>
+                            <a href="#">选项卡</a>
+                        </div>
+                        <div>
+                            <a href="#">进度条</a>
+                        </div>
+                        <div>
+                            <a href="#">面板</a>
+                        </div>
+                        <div>
+                            <a href="#">徽章</a>
+                        </div>
+                        <div>
+                            <a href="#">时间线</a>
+                        </div>
+                        <div>
+                            <a href="#">动画</a>
+                        </div>
+                        <div>
+                            <a href="#">辅助</a>
+                        </div>
+                        <div  class="cList_list">
+                            <a href="#">通用弹层</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">功能演示</a>
+                                </div>
+                                <div>
+                                    <a href="#">特殊示例</a>
+                                </div>
+                                <div>
+                                    <a href="#">风格定制</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="cList_list">
+                            <a href="#">日期时间</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">功能演示一</a>
+                                </div>
+                                <div>
+                                    <a href="#">功能演示二</a>
+                                </div>
+                                <div>
+                                    <a href="#">设定主题</a>
+                                </div>
+                                <div>
+                                    <a href="#">特殊示例</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="cList_list">
+                            <a href="#">表格</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">简单数据表格</a>
+                                </div>
+                                <div>
+                                    <a href="#">列宽自动分配</a>
+                                </div>
+                                <div>
+                                    <a href="#">赋值已知数据</a>
+                                </div>
+                                <div>
+                                    <a href="#">转化静态表格</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启分页</a>
+                                </div>
+                                <div>
+                                    <a href="#">自定义分页</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启头部工具栏</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启合计行</a>
+                                </div>
+                                <div>
+                                    <a href="#">高度最大适应</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启复选框</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启单选框</a>
+                                </div>
+                                <div>
+                                    <a href="#">开启单元格编辑</a>
+                                </div>
+                                <div>
+                                    <a href="#">加入表单元素</a>
+                                </div>
+                                <div>
+                                    <a href="#">设置单元格样式</a>
+                                </div>
+                                <div>
+                                    <a href="#">固定列</a>
+                                </div>
+                                <div>
+                                    <a href="#">数据操作</a>
+                                </div>
+                                <div>
+                                    <a href="#">解析任意数据格式</a>
+                                </div>
+                                <div>
+                                    <a href="#">监听行事件</a>
+                                </div>
+                                <div>
+                                    <a href="#">数据表格的重载</a>
+                                </div>
+                                <div>
+                                    <a href="#">设置初始排序</a>
+                                </div>
+                                <div>
+                                    <a href="#">监听单元格事件</a>
+                                </div>
+                                <div>
+                                    <a href="#">复杂表头</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="cList_list">
+                            <a href="#">分页</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">功能演示一</a>
+                                </div>
+                                <div>
+                                    <a href="#">功能演示二</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="cList_list">
+                            <a href="#">上传</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">功能演示一</a>
+                                </div>
+                                <div>
+                                    <a href="#">功能演示二</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">颜色选择器</a>
+                        </div>
+                        <div>
+                            <a href="#">滑块组件</a>
+                        </div>
+                        <div>
+                            <a href="#">评分</a>
+                        </div>
+                        <div>
+                            <a href="#">轮播</a>
+                        </div>
+                        <div>
+                            <a href="#">流加载</a>
+                        </div>
+                        <div>
+                            <a href="#">工具</a>
+                        </div>
+                        <div>
+                            <a href="#">代码修饰</a>
+                        </div>
+                        <div>
+                            <a href="#">即时聊天</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe663;</i>
+                    <a href="#">
+                        页面
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#">个人主页</a>
+                        </div>
+                        <div>
+                            <a href="#">通讯录</a>
+                        </div>
+                        <div>
+                            <a href="#">客户列表</a>
+                        </div>
+                        <div>
+                            <a href="#">商品列表</a>
+                        </div>
+                        <div>
+                            <a href="#">留言板</a>
+                        </div>
+                        <div>
+                            <a href="#">搜索结果</a>
+                        </div>
+                        <div>
+                            <a href="#">注册</a>
+                        </div>
+                        <div>
+                            <a href="#">登入</a>
+                        </div>
+                        <div>
+                            <a href="#">忘记密码</a>
+                        </div>
+                        <div>
+                            <a href="#">404</a>
+                        </div>
+                        <div>
+                            <a href="#">错误提示</a>
+                        </div>
+                        <div class="cList_list">
+                            <a href="#">内嵌页面</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">百度一下</a>
+                                </div>
+                                <div>
+                                    <a href="#">layui官网</a>
+                                </div>
+                                <div>
+                                    <a href="#">layuiAdmin官网</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe653;</i>
+                    <a href="#">
+                        应用
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div class="cList_list">
+                            <a href="#">内容系统</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">文章列表</a>
+                                </div>
+                                <div>
+                                    <a href="#">分类管理</a>
+                                </div>
+                                <div>
+                                    <a href="#">评论管理</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cList_list">
+                            <a href="#">社区系统</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">帖子列表</a>
+                                </div>
+                                <div>
+                                    <a href="#">回帖列表</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">消息中心</a>
+                        </div>
+                        <div>
+                            <a href="#">工单系统</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe674;</i>
+                    <a href="#">
+                        高级
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#">通讯系统</a>
+                        </div>
+                        <div class="cList_list">
+                            <a href="#">Echarts集成</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">折线图</a>
+                                </div>
+                                <div>
+                                    <a href="#">柱状图</a>
+                                </div>
+                                <div>
+                                    <a href="#">地图</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe770;</i>
+                    <a href="#">
+                        用户
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#">网站用户</a>
+                        </div>
+                        <div>
+                            <a href="#">后台管理员</a>
+                        </div>
+                        <div>
+                            <a href="#">角色管理</a>
+                        </div>
+                    </div>
+                </li> -->
+                <!--<li>
+                    <i class="layui-icon fixed_icon">&#xe716;</i>
+                    <a href="#">
+                        设置
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div class="cList_list">
+                            <a href="#">系统设置</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">网站设置</a>
+                                </div>
+                                <div>
+                                    <a href="#">邮件服务</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cList_list">
+                            <a href="#">我的设置</a>
+                            <div class="children_list">
+                                <div>
+                                    <a href="#">基本资料</a>
+                                </div>
+                                <div>
+                                    <a href="#">修改密码</a>
+                                </div>
+                            </div>
+                            <div class="turnBox_s">
+                                <div class="triangle_icon ">
+                                    <i class="layui-icon">&#xe625;</i>
+                                    <i class="layui-icon turn_icon">&#xe625;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>-->
+                <!-- <li>
+                    <i class="layui-icon fixed_icon">&#xe716;</i>
+                    <a href="#">
+                        系统设置
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#/" url="page_c/page_configuration.html">网站配置</a>
+                        </div>
+                    </div>
+                </li> -->
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe653;</i>
+                    <a href="#">
+                        导航管理
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#/" url="page_c/add_nav.html">导航添加</a>
+                        </div>
+                        <div>
+                            <a href="#/" url="page_c/sort_nav.html">导航列表</a>
+                        </div>
+                    </div>
+                </li>
+				<li>
+				    <i class="layui-icon fixed_icon">&#xe653;</i>
+				    <a href="#">
+				        banner图管理
+				    </a>
+				    <div class="turnBox">
+				        <div class="triangle_icon ">
+				            <i class="layui-icon">&#xe625;</i>
+				            <i class="layui-icon turn_icon">&#xe625;</i>
+				        </div>
+				    </div>
+				    <div class="child_list">
+				        <div>
+				            <a href="#/" url="page_c/add_banner.html">banner图添加</a>
+				        </div>
+				        <div>
+				            <a href="#/" url="page_c/show_banner.html">banner图列表</a>
+				        </div>
+				    </div>
+				</li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe653;</i>
+                    <a href="#">
+                        文章管理
+                    </a>
+                    <div class="turnBox">
+                        <div class="triangle_icon ">
+                            <i class="layui-icon">&#xe625;</i>
+                            <i class="layui-icon turn_icon">&#xe625;</i>
+                        </div>
+                    </div>
+                    <div class="child_list">
+                        <div>
+                            <a href="#/" url="page_c/add_article.html">文章添加</a>
+                        </div>
+                        <div>
+                            <a href="#/" url="page_c/show_article.html">文章列表</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <i class="layui-icon fixed_icon">&#xe679;</i>
+                    <a href="#">
+                        授权
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_right">
+            <iframe src="page_c/Control.html" frameborder="0" class="main_iframe"></iframe>
+        </div>
+    </div>
+    <div class="switch_bg">
+        <div class="switch_li">
+            <div class="switch_liTop">
+                <span>配色方案</span>
+            </div>
+            <div class="color_plans">
+                <div class="color_style" color="default">
+                    default
+                </div>
+                <div class="color_style" color="dark-blue">
+                    dark-blue
+                </div>
+                <div class="color_style" color="coffee">
+                    coffee
+                </div>
+                <div class="color_style" color="purple">
+                    purple
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        if(document.cookie.match(/uName=(.+);/)){
+            var uName=document.cookie.match(/uName=(.+);/)[1];
+            $(".uName").html(uName);
+        }
+    </script>
+    <script>
+        var main_a=$(".main_list>li>a");
+        var bg=localStorage.getItem("bg");
+        var color=localStorage.getItem("color");
+        var nav_right=localStorage.getItem("nav_right");
+        var mainLeft=localStorage.getItem("mainLeft");
+        var child_list=localStorage.getItem("child_list");
+        main_a.siblings(".child_list").hide();
+        $(".children_list").hide();
+        $(".nav_left>div").attr("style",bg);
+        $(".child_active").attr("style",color);
+        $(".nav_right").attr("style",nav_right);
+        $(".main_left").attr("style",mainLeft);
+        // $(".child_list").attr("style",child_list);
+
+        main_a.click(function(){
+            main_a.not(this).siblings(".child_list").hide();
+            $(this).siblings(".child_list").toggle();
+        });
+
+        $(".cList_list>a").click(function(){
+            $(".cList_list>a").not(this).siblings(".children_list").hide();
+            $(this).siblings(".children_list").toggle();
+        });
+
+        $(".child_list>div").click(function(){
+            if(!$(this).hasClass("cList_list")){
+                $(".main_list div").removeClass("child_active");
+                $(".main_list div").not(".child_list").css({background:"",color:""});
+                $(this).addClass("child_active");
+                var color=localStorage.getItem("color");
+                console.log(color);
+                $(this).attr("style",color);
+                if($(this).find("a").attr("url")){
+                    $(".main_iframe").attr("src",$(this).find("a").attr("url"));
+                }else{
+                    $(".main_iframe").attr("src","404.html");
+                }
+            }
+        });
+        $(".children_list>div").click(function(){
+            $(".main_list div").removeClass("child_active");
+            $(".main_list div").not(".child_list").css({background:"",color:""});
+            $(this).addClass("child_active");
+            var color=localStorage.getItem("color");
+            console.log(color);
+            $(this).attr("style",color);
+            if($(this).find("a").attr("url")){
+                $(".main_iframe").attr("src",$(this).find("a").attr("url"));
+            }else{
+                $(".main_iframe").attr("src","404.html");
+            }
+        });
+
+        //点击菜单键，收缩和展开 左侧菜单栏
+        var nav_left=$(".nav_left");
+        var _html=nav_left.html();
+        var _show;
+        var _show_c;
+        $(".shrink_menu").click(function(){
+            var show=main_a.siblings(".child_list").not(":hidden");
+            var show_c=$(".children_list").not(":hidden");
+            if(nav_left.children().is("img")){
+                _show.show();
+                _show_c.show();
+                nav_left.css({width:"",paddingLeft:"",paddingRight:""});
+                nav_left.html(_html);
+                $(".main_right").css({paddingLeft:""});
+                $(".main_left").css({width:""});
+                main_a.css({visibility:"visible"});
+                $(".nav_right").css({paddingLeft:""});
+            }else{
+                _show=show;
+                _show_c=show_c;
+                main_a.siblings(".child_list").hide();
+                $(".children_list").hide();
+                nav_left.attr("style","width:60px ;paddingLeft:15px;paddingRight:15px;"+bg);
+                console.log(bg);
+                nav_left.html("<img src='img/logo.png' class='favicon'>");
+                $(".main_right").css({paddingLeft:60});
+                $(".main_left").css({width:60});
+                main_a.css({visibility:"hidden"});
+                $(".nav_right").css({paddingLeft:60});
+            }
+        });
+        $(".uTheme").click(function(){
+            $(".switch_bg").css({display:"block"});
+        });
+        $(".switch_bg").click(function(){
+            if(event.target.className==="switch_bg"){
+                $(this).css({display:"none"});
+            }
+        });
+
+        //移入用户名弹出下拉菜单
+        var T;
+        var S;
+        $(".userName").mouseover(function(){
+            clearTimeout(T);
+            S=setTimeout(function(){$(".uN_list").css({top: 10,opacity:1,display:"block"})},500);
+        });
+        $(".userName").mouseout(function(){
+            clearTimeout(S);
+            T=setTimeout(function(){$(".uN_list").css({display:"",top: "",opacity:""})},1500);
+        });
+
+        //点击改变主题颜色
+        $(".color_style").click(color_style);
+        function color_style(){
+            var colors=$(this).attr("color");
+            var leftTop=$(".nav_left>div");
+            var nav_right=$(".nav_right");
+            var mainLeft=$(".main_left");
+            var checked=$(".child_active");
+            var child_list=$(".child_list");
+            if(colors==="default"){
+                leftTop.attr("style","");
+                checked.attr("style","background-color:#009587 !important;color:#fff");
+                nav_right.attr("style","");
+                mainLeft.attr("style","");
+                child_list.attr("style","");
+            }else if(colors==="dark-blue"){
+                leftTop.attr("style","background-color:#03152A !important;color:rgba(255,255,255,.8)");
+                checked.attr("style","background: #3B91FF !important");
+                nav_right.attr("style","");
+                mainLeft.attr("style","");
+                child_list.attr("style","");
+            }else if(colors==="coffee"){
+                leftTop.attr("style","background-color:#2E241B !important;color:rgba(255,255,255,.8)");
+                checked.attr("style","background: #A48566 !important");
+                nav_right.attr("style","");
+                mainLeft.attr("style","");
+                child_list.attr("style","");
+            }else if(colors==="purple"){
+                leftTop.attr("style","background-color:#50314F !important;color:rgba(255,255,255,.8)");
+                nav_right.attr("style","background-color:#50314F !important;color:rgba(255,255,255,.8)");
+                mainLeft.attr("style","background-color:#50314F !important;color:rgba(255,255,255,.8)");
+                child_list.attr("style","background-color:rgba(0,0,0,.3)!important;color:rgba(255,255,255,.8)");
+                checked.attr("style","background: #7A4D7B !important");
+            }
+            localStorage.setItem("bg",leftTop.attr("style"));
+            localStorage.setItem("color",checked.attr("style"));
+            localStorage.setItem("nav_right",nav_right.attr("style"));
+            localStorage.setItem("mainLeft",mainLeft.attr("style"));
+            localStorage.setItem("child_list",child_list.attr("style"));
+        }
+        $(".reload_iF").click(function(){
+            var i_src=$(".main_right iframe").attr("src");
+            $(".main_right iframe").attr("src",i_src);
+        });
+    </script>
+</body>

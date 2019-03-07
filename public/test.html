@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="utf-8"> 
+    <title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+    <canvas id="myCanvas" width="200px" height="100px" style="border:1px solid #000000;">
+        您的浏览器不支持 HTML5 canvas 标签。
+    </canvas>
+
+    <script>
+        var myCanvas=document.querySelector("#myCanvas");
+        var ctx=myCanvas.getContext("2d");
+        ctx.moveTo(20,20);
+        ctx.lineTo(30,40);
+        ctx.lineTo(60,10);
+        ctx.lineTo(200,5);
+        ctx.lineTo(15,99);
+        ctx.lineTo(118,16);
+        ctx.lineTo(20,84);
+        ctx.strokeStyle="green";
+        ctx.stroke();
+    </script>
+</body>

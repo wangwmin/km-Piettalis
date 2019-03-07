@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加导航</title>
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            background: #f5f5f5;
+            width: 100%;
+            padding: 15px;
+        }
+        .body{
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,.5);
+        }
+        .header{
+            padding: 10px;
+            border-bottom: 1px solid #999;
+            border-top: 6px solid #0c6a31;
+            width: 100%;
+        }
+        .main{
+            padding-top: 10px;
+            width: 100%;
+            padding-bottom: 30px;
+        }
+        .addN_body{
+            width: 100%;
+            list-style: none;
+        }
+        .addN_body li{
+            text-align: center;
+            width: 80%;
+            margin: 0 auto 30px;
+            padding-top: 10px;
+            overflow: hidden;
+        }
+        .left{
+            width: 30%;
+            text-align: right;
+            float: left;
+        }
+        .right{
+            width: 70%;
+            text-align: left;
+            padding-left: 15px;
+            float: left;
+        }
+        .wid{
+            width: 80%;
+            height: 24px;
+        }
+        #height{
+            height: 70px;
+        }
+        input{
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="header">
+            添加导航
+        </div>
+        <div class="main">
+            <form action="" class="reset">
+                <ul class="addN_body">
+                    <li>
+                        <div class="left"><span>标题 *</span></div>
+                        <div class="right"><input type="text" class="wid navName"></div>
+                    </li>
+                    <li>
+                        <div class="left"><span>链接地址</span></div>
+                        <div class="right"><input type="text" class="wid linkSrc"></div>
+                    </li>
+                    <li>
+                        <div class="left"><span>关键字</span></div>
+                        <div class="right"><input type="text" class="wid keyWord"></div>
+                    </li>
+                    <li>
+                        <div class="left"><span>描述</span></div>
+                        <div class="right"><textarea name="" id="height" class="wid description"></textarea></div>
+                    </li>
+                    <li>
+                        <div class="left"><span>展示图</span></div>
+                        <div class="right">
+							<input class="wid navBanner" type="file">
+						</div>
+                    </li>
+                    <li>
+                        <div class="left"><span>父级分类</span></div>
+                        <div class="right">
+                            <select class="wid selector">
+                                <option value ="0">新建顶端导航</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 在表单中使用submit按钮会导致form表单提交数据，可能不会触发ajax
+                                因此注意要设置它的type为普通无效果的button按钮 -->
+                        <button type="button" class="save_btn">保存</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var selects=$(".selector").html();
+        /* 获取信息 */
+        function get_nav(){
+            $.ajax({
+                url:"/get_nav",
+                type:"get",
+                success:function(da){
+                    $(".selector").html(selects+da);
+                }
+            });
+        }
+        get_nav();
+    </script>
+    <script>
+        /* 保存信息 */
+            $(".save_btn").click(function(){
+                if($(".navName").val()){// 排空处理，设置了必填选项 导航名，判断导航名是否填写即可
+					var datas=new FormData();
+					var M={};
+					datas.append("nav_navName",$(".navName").val());
+					datas.append("nav_linkSrc",$(".linkSrc").val());
+					datas.append("nav_keyWord",$(".keyWord").val());
+					datas.append("nav_description",$(".description").val());
+					datas.append("nav_pid",$(".selector").val());
+					datas.append("nav_banner",$(".navBanner").prop("files")[0]);
+                    $.ajax({
+                        url:"/set_nav?"+Math.random(),
+                        type:"post",
+                        data: datas,
+                        contentType: false,
+                        processData:false,
+                        success:function(da){
+                            alert(da);
+                            get_nav();
+                            // $(".reset")[0]：可以把jq选择的标签转成js原生的选择方式，可以使用原生js的方法
+                            $(".reset")[0].reset();// 请求成功后刷新表单，让表单中的数据归0
+                        }
+                    });
+                }else{
+                    alert("请填写必要选项！");
+                }
+            });
+
+
+    </script>
+</body>

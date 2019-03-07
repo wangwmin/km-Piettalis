@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+    <link rel="stylesheet" href="../alert/alert.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            background: #f5f5f5;
+            width: 100%;
+            padding: 15px;
+        }
+        .body{
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,.5);
+        }
+        .header{
+            padding: 10px;
+            border-bottom: 1px solid #999;
+            border-top: 6px solid #0c6a31;
+            width: 100%;
+        }
+        .main{
+            padding-top: 10px;
+            width: 100%;
+            padding-bottom: 30px;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+           padding-left: 30px;
+        }
+        thead{
+            width: 100%;
+        }
+        .article_body{
+            height: 60px;
+            padding: 10px 0;
+        }
+        thead td{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        td{
+            width: 16.6%;
+            text-align: center;
+            padding: 2px;
+            white-space: nowrap;
+        }
+        td img{
+            width: 30%;
+        }
+		.article_id{
+             width: 10%;
+         }
+        .operate{
+            text-align: center;
+        }
+        button{
+            width: 45%;
+            height: 36px;
+            font-size: 16px;
+            padding: 6px 10px;
+            border: 0;
+            color: #f5f5f5;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,.1);
+            border-radius: 4px;
+            margin-left: 2px;
+        }
+        input{
+            width: 100%;
+        }
+        .editor{
+            background: #21a859;
+        }
+        .del{
+            margin-left: 5px;
+            background: rgba(225, 51, 25, 0.69);
+        }
+        .page_list{
+            text-align: center;
+            padding: 10px;
+        }
+        .pageList{
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .pageList_active{
+            background: #999;
+            color: #fff;
+        }
+		.article_title{
+			max-width: 300px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="header">
+            文章列表
+        </div>
+        <div class="main">
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>图片</td>
+                        <td>标题</td>
+                        <td>类型</td>
+                        <td>发布时间</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody class="article_main"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page_list"></div>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <!-- 引用alert.js插件 -->
+    <script src="../alert/alert.js"></script>
+    <script>
+        var page_num=1;
+        function get_A(page){
+            $.ajax({
+                url:"/get_articleList",
+                type:"get",
+                data:{
+                    pageCode: page?page:1
+                },
+                success:function(da){
+                    var tr="",btn="";
+                    var data1=da.data1;
+                    for(var i=0;i<data1.length;i++){
+                        tr+="<tr class='article_body'>"+
+                                "<td class='article_id'>"+data1[i].id+"</td>"+
+                                "<td class='article_banner'><img src='"+(data1[i].banner?data1[i].banner:"")+"'></td>"+
+                                "<td class='article_title'>"+data1[i].title+"</td>"+
+                                "<td class='article_type'>"+(data1[i].type==1?"普通文章":"热点文章")+"</td>"+
+                                "<td class='article_date'>"+data1[i].dates+"</td>"+
+                                "<td class='operate'>"+
+                                "<button class='editor' onclick='editor()'>编辑</button>"+
+                                "<button class='del' onclick='del("+data1[i].id+")'>删除</button>"+
+                                "</td></tr>";
+                    }
+                    $(".article_main").html(tr);
+                    var data2=da.data2;
+                    console.log(data2);
+                    page_num=data2.page;
+                    btn+="<span class='pageList first_page' style='display:"+(data2.page==data2.first?'none':'')+"' onclick='get_A("+data2.first+")' onmousedown='click_active(this)'>第一页</span>";
+                    btn+="<span class='pageList all_page' onclick='get_A("+data2.prev+")' onmousedown='click_active(this)'>上一页</span>";
+                    for(i=0;i<data2.pageList.length;i++){
+                        if(data2.page==data2.pageList[i]){
+                            btn+="<span class='pageList pageList_active all_page' onclick='get_A("+data2.pageList[i]+")' onmousedown='click_active(this)'>"+data2.pageList[i]+"</span>";
+                        }else{
+                            btn+="<span class='pageList all_page' onclick='get_A("+data2.pageList[i]+")' onmousedown='click_active(this)'>"+data2.pageList[i]+"</span>";
+                        }
+                    }
+                    btn+="<span class='pageList all_page' onclick='get_A("+data2.next+")' onmousedown='click_active(this)'>下一页</span>";
+                    btn+="<span class='pageList last_page' style='display:"+(data2.page==data2.last?'none':'')+"'  onclick='get_A("+data2.last+")' onmousedown='click_active(this)'>最后一页</span>";
+                    $(".page_list").html(btn);
+                }
+            });
+        }
+        get_A();
+        function click_active(that){
+            /*$(that).css({background:"rgba(225, 51, 25, 0.69)"});*/
+        }
+
+        var M={};
+        function editor(){
+            if(M.dialog8){
+                return M.dialog8.show();
+            }
+            M.dialog8 = jqueryAlert({
+                'style'   : 'pc',
+                'title'   : 'iframe窗',
+                'content' :  "add_nav.html",
+                'modal'   : true,
+                'contentTextAlign' : 'left',
+                'width'   : '90%',
+                'height'  : '90%',
+                'animateType': 'scale'
+            })
+        }
+        function del(_id){
+            var M={};
+            if(M.dialog3){
+                return M.dialog3.show();
+            }
+            M.dialog3 = jqueryAlert({
+                'title'   : '提示',
+                'content' : '你确定要删除么？',
+                'modal'   : true,
+                'buttons' :{
+                    '确定' : function(){
+                        if(M.dialog31){
+                            return M.dialog31.show();
+                        }
+                        M.dialog31 = jqueryAlert({
+                            'content' : '删除成功！'
+                        });
+                        M.dialog3.close();
+                        // 执行删除命令
+                        $.ajax({
+                            url:"/del_articleList",
+                            type:"post",
+                            data:{
+                                id_num:_id
+                            },
+                            success:function(da){
+                                get_A(page_num);
+                            }
+                        });
+                    },
+                    '取消' : function(){
+                        M.dialog3.close();
+                    }
+                }
+            })
+        }
+    </script>
+</body>

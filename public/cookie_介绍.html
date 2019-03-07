@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <button class="set">设置cookie</button>
+    <br/>
+    <button class="del">删除cookie</button>
+
+    <script>
+    /* cookie和本地存储相同，都是把字符串数据存到浏览器中
+        * 不同的是cookie在前端和后端都可以使用，而本地存储只能用在前端
+        * 本地存储存放的数据量要 大于 cookie存储的数据量
+        * * cookie只能通过服务器(webstorm端的服务器 或 自己创建的服务器)进入才能存储数据
+    */
+    /* 设置cookie：document.cookie
+        * expires：可以设置cookie数据的过期时间，等过了设置的时间数据就会自动消失
+        * 注意，基于公共约定，设置的时间必须转成世界时间：toUTCString()
+    */
+        $(".set").click(function setCookie(){
+            var d=new Date();
+            d.setMinutes(d.getMinutes()+5);// 当前时间5分钟后过期，即2018-12-18T01:29:07.000Z
+            document.cookie="name="+encodeURIComponent("小强")+";expires="+d.toUTCString();
+            // 如果要设置两个cookie，那么就要另外写一个document.cookie
+            document.cookie="pwd=xiaoQiang;expires="+d.toUTCString();
+        });
+    /* 删除cookie
+        * 设置过期时间在当前时间之前，那么浏览器就会判断该cookie已过期，自动删除该cookie
+    */
+        $(".del").click(function delCookie(){
+            var d=new Date();
+            d.setMinutes(d.getMinutes()-10);
+            document.cookie="name=;expires="+d.toUTCString();
+            document.cookie="pwd=;expires="+d.toUTCString();
+        });
+    // 获取cookie，注意上面设置的cookie只能存放5分钟
+    // 要获取相应的数据只需要修改name和pwd即可
+        console.log(document.cookie.match(/name=(.+?)(?:;|$)/));
+        console.log(decodeURI(document.cookie.match(/name=(.+?)(?:;|$)/)[1]));
+        console.log(document.cookie.match(/pwd=(.+?)(?:;|$)/)[1]);
+
+
+    // node方法操作cookie
+        $.ajax({
+            url:"/setCookie",
+            type:"get",
+            data:{
+                name:"三好"
+            },
+            success:function(da){
+             console.log(da);
+            }
+        })
+
+    </script>
+</body>
